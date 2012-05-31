@@ -5,7 +5,7 @@ using Hammock.Web;
 
 namespace TweetSharp
 {
-    partial class TwitterService
+    partial class TwitterService : ITwitterService
     {
         private readonly RestClient _userStreamingClient;
         private readonly RestClient _searchStreamingClient;

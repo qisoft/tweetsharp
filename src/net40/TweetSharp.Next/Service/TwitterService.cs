@@ -511,6 +511,20 @@ namespace TweetSharp
 #endif
 
 #if WINDOWS_PHONE
+        private void WithHammockFile<T>(WebMethod method, string fileParamName, string filePath, System.IO.Stream file, string path, Action<T, TwitterResponse> action, params object[] segments) where T : class
+        {
+            WithHammockFile(method, fileParamName, filePath, file, action, ResolveUrlSegments(path, segments.ToList()));
+        }
+
+        private void WithHammockFile<T>(WebMethod method, string fileParamName, string filePath, System.IO.Stream file, Action<T, TwitterResponse> action, string path) where T : class
+        {
+            var request = PrepareHammockQuery(path);
+            request.Method = method;
+            request.AddFile(fileParamName, filePath, file);
+
+            WithHammockImpl(request, action);
+        }
+
         private void WithHammock<T>(Action<T, TwitterResponse> action, string path) where T : class
         {
             var request = PrepareHammockQuery(path);

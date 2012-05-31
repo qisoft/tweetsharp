@@ -13,7 +13,7 @@ namespace TweetSharp
         string RawSource { get; set; }
     }
 
-    public interface ITweeter
+    public interface ITweeter 
     {
         string ScreenName { get; }
         string ProfileImageUrl { get; }

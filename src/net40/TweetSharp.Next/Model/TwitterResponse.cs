@@ -20,7 +20,7 @@ namespace TweetSharp
         private readonly RestResponseBase _response;
         private readonly Exception _exception;
 
-        internal TwitterResponse(RestResponseBase response, Exception exception = null)
+        public TwitterResponse(RestResponseBase response, Exception exception = null)
         {
             _exception = exception;
             _response = response;

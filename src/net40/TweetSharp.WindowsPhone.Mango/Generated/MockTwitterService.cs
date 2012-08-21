@@ -19,6 +19,22 @@ namespace TweetSharp
         private static List<TwitterStatus> favoritedStatus = new List<TwitterStatus>();
         private Random rand = new Random((int)DateTime.Now.Ticks);
 
+        private static string _nextname;
+        private static bool shouldGoNextName = false;
+        public static string NextScreenName
+        {
+            protected get { shouldGoNextName = false; return _nextname; }
+            set { _nextname = value; shouldGoNextName = true; }
+        }
+
+        private static int _nextId;
+        private static bool shouldGoNextId = false;
+        public static int NextId
+        {
+            protected get { shouldGoNextId = false; return _nextId; }
+            set { _nextId = value; shouldGoNextId = true; }
+        }
+
         public virtual void AuthenticateWith(string token, string tokenSecret)
         {
         }
@@ -37,6 +53,18 @@ namespace TweetSharp
         }
         private TwitterUser CreateSampleUser()
         {
+            string name;
+            if (shouldGoNextName)
+                name = NextScreenName;
+            else
+                name = rand.Next().ToString();
+
+            int id;
+
+            if (shouldGoNextId)
+                id = NextId;
+            else
+                id = rand.Next();
             return new TwitterUser
             {
                 ContributorsEnabled = true,
@@ -46,7 +74,7 @@ namespace TweetSharp
                 FollowersCount = 10,
                 FollowRequestSent = false,
                 FriendsCount = 150,
-                Id = rand.Next(0, 99999999),
+                Id = id,
                 IsDefaultProfile = false,
                 IsGeoEnabled = false,
                 IsProfileBackgroundTiled = false,
@@ -59,7 +87,7 @@ namespace TweetSharp
                 Name = "Pepito grillo",
                 StatusesCount = 1205,
                 Url = "about:blank",
-                ScreenName = rand.Next(0, 1231315).ToString(),               
+                ScreenName = name,               
             };
         }
 
@@ -1605,7 +1633,12 @@ namespace TweetSharp
 
         public virtual void ListUserProfilesFor(IEnumerable<string> screenName, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
         {
-            throw new NotImplementedException();
+            var user = CreateSampleUser();
+            user.ScreenName = screenName.FirstOrDefault();
+            var list = new List<TwitterUser>();
+            list.Add(user);
+            if (action != null)
+                action(list, GetResponse());
         }
 
         public virtual void ListUserProfilesFor(IEnumerable<int> userId, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
@@ -1669,6 +1702,14 @@ namespace TweetSharp
         }
 
         public virtual void ReportSpam(long id, Action<TwitterUser, TwitterResponse> action)
+        {
+            var user = CreateSampleUser();
+            user.Id = (int)id;
+            if (action != null)
+                action(user, GetResponse());
+        }
+
+        public virtual Hammock.RestRequest PrepareEchoRequest()
         {
             throw new NotImplementedException();
         }

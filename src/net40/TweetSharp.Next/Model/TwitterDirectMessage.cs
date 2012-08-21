@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.Serialization;
 using Hammock.Model;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace TweetSharp
 {
@@ -33,6 +34,82 @@ namespace TweetSharp
         private string _text;
         private DateTime _createdDate;
         private TwitterEntities _entities;
+
+
+        public string AuthorName
+        {
+            get
+            {
+                return SenderScreenName;
+            }
+        }
+
+        private static string TrimUrl(string url)
+        {
+            if (url == null)
+                return "";
+            url = url.Replace("http://", "");
+            url = url.Replace("https://", "");
+            if (url.Length > 25)
+            {
+                int SlashIndex = url.IndexOf('/');
+                url = url.Substring(0, SlashIndex + 1);
+                url += "...";
+            }
+
+            return url;
+        }
+
+        private string _cleanText;
+        public string CleanText
+        {
+            get
+            {
+                if (_cleanText != null)
+                    return _cleanText;
+
+                string TweetText = Text;
+                string ReturnText = "";
+                string PreviousText;
+                int i = 0;
+
+                foreach (var Entity in Entities)
+                {
+                    if (Entity.StartIndex > i)
+                    {
+                        PreviousText = TweetText.Substring(i, Entity.StartIndex - i);
+                        ReturnText += HttpUtility.HtmlDecode(PreviousText);
+                    }
+
+                    i = Entity.EndIndex;
+
+                    switch (Entity.EntityType)
+                    {
+                        case TwitterEntityType.HashTag:
+                            ReturnText += "#" + ((TwitterHashTag)Entity).Text;
+                            break;
+
+                        case TwitterEntityType.Mention:
+                            ReturnText += "@" + ((TwitterMention)Entity).ScreenName;
+                            break;
+
+                        case TwitterEntityType.Url:
+                            ReturnText += TrimUrl(((TwitterUrl)Entity).Value);
+                            break;
+                        case TwitterEntityType.Media:
+                            ReturnText += ((TwitterMedia)Entity).DisplayUrl;
+                            break;
+                    }
+                }
+
+                if (i < TweetText.Length)
+                    ReturnText += HttpUtility.HtmlDecode(TweetText.Substring(i));
+
+                _cleanText = ReturnText;
+                return ReturnText;
+            }
+        }
+
 
 #if !Smartphone && !NET20
         [DataMember]

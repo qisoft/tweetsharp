@@ -11,6 +11,8 @@ namespace TweetSharp
         DateTime CreatedDate { get; }
         TwitterEntities Entities { get; }
         string RawSource { get; set; }
+        string AuthorName { get; }
+        string CleanText { get; }
     }
 
     public interface ITweeter 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Hammock.Model;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace TweetSharp
 {
@@ -48,6 +49,22 @@ namespace TweetSharp
     public class TwitterUserStreamStatus : TwitterStreamArtifact, ITweetable
     {
         private TwitterStatus _status;
+
+        public string AuthorName
+        {
+            get
+            {
+                return _status.AuthorName;
+            }
+        }
+
+        public string CleanText
+        {
+            get
+            {
+                return _status.CleanText;
+            }
+        }
 
         public virtual TwitterStatus Status
         {
@@ -104,6 +121,22 @@ namespace TweetSharp
     public class TwitterUserStreamDirectMessage: TwitterStreamArtifact, ITweetable
     {
         private TwitterDirectMessage _dm;
+
+        public string AuthorName
+        {
+            get
+            {
+                return _dm.AuthorName;
+            }
+        }
+
+        public string CleanText
+        {
+            get
+            {
+                return _dm.CleanText;
+            }
+        }
 
         public virtual TwitterDirectMessage DirectMessage
         {

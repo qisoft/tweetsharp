@@ -9,6 +9,11 @@ namespace TweetSharp
 	public partial interface ITwitterService
 	{
 		#region Asynchronous Methods (without IAsyncResult)
+
+        void AuthenticateWith(string token, string tokenSecret);
+
+        void AuthenticateWith(string consumerKey, string consumerSecret, string token, string tokenSecret);
+
 		void VerifyCredentials(Action<TwitterUser, TwitterResponse> action);
 
 		void GetRateLimitStatus(Action<TwitterRateLimitStatus, TwitterResponse> action);
@@ -251,6 +256,8 @@ namespace TweetSharp
 
 		void SearchBefore(long max_id, string q, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action);
 
+        RestRequest PrepareEchoRequest();
+
 		void SearchBefore(long max_id, string q, int rpp, Action<TwitterSearchResult, TwitterResponse> action);
 
 		void SearchBefore(long max_id, string q, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action);
@@ -297,6 +304,8 @@ namespace TweetSharp
 
 		void ListTweetsOnFriendsTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
 
+        void ListTweetsOnSpecifiedUserTimeline(string screenName, int count, bool includeRT, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
 		void ListTweetsOnUserTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
 
 		void ListTweetsOnUserTimeline(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
@@ -314,6 +323,10 @@ namespace TweetSharp
 		void ListTweetsOnUserTimelineBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
 
 		void ListTweetsOnUserTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+        void ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, bool includeRT, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+        
 
 		void ListTweetsOnSpecifiedUserTimeline(int userId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
 

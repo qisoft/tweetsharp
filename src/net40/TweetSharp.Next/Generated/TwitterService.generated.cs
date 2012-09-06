@@ -188,6 +188,24 @@ namespace TweetSharp
 
 		IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage);	
 
+		IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage);	
+
+		IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage);	
+
 		TwitterCursorList<TwitterList> ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor);	
 
 		TwitterCursorList<TwitterUser> ListListMembers(string ownerScreenName, string slug, long cursor);	
@@ -728,6 +746,24 @@ namespace TweetSharp
 		IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
 
 		IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+		IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
 
 		IAsyncResult ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action);		
 
@@ -1959,6 +1995,24 @@ namespace TweetSharp
 
 		void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
 
+		void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+		void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
 		void ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action);
 
 		void ListListMembers(string ownerScreenName, string slug, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action);
@@ -2775,6 +2829,51 @@ namespace TweetSharp
 		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage)
 		{
 			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
 		}
 
 		public virtual TwitterCursorList<TwitterList> ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor)
@@ -4122,6 +4221,51 @@ namespace TweetSharp
 			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&page=", page, "&per_page=", perPage);
 		}
 
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts);
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts);
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts);
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
 		public virtual IAsyncResult ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action)
 		{
 			return WithHammock(action, "lists/memberships", FormatAsString, "?screen_name=", screenName, "&filter_to_owned_lists=", filterToOwnedLists, "&cursor=", cursor);
@@ -5465,6 +5609,51 @@ namespace TweetSharp
 		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage)
 		{
 			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, bool include_rts)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
 		}
 
 		public virtual IAsyncResult BeginListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor)
@@ -7952,6 +8141,51 @@ namespace TweetSharp
 			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&page=", page, "&per_page=", perPage);
 		}
 
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts);
+		}
+
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts);
+		}
+
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&since_id=", sinceId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts);
+		}
+
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&per_page=", perPage);
+		}
+
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "lists/statuses", FormatAsString, "?owner_screen_name=", ownerScreenName, "&slug=", slug, "&max_id=", maxId, "&include_rts=", include_rts, "&page=", page, "&per_page=", perPage);
+		}
+
 		public virtual void ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action)
 		{
 			WithHammock(action, "lists/memberships", FormatAsString, "?screen_name=", screenName, "&filter_to_owned_lists=", filterToOwnedLists, "&cursor=", cursor);
@@ -8846,6 +9080,6444 @@ namespace TweetSharp
 		{
 			WithHammock(action, "geo/search", FormatAsString, "?ip=", ip);
 		}
+
+		#endregion
+#endif	
+	}
+
+	#endregion
+}
+
+namespace TweetSharp
+{
+#region Base for creating mock services.
+	public class BaseMockTwitterService : ITwitterService
+	{	
+#if !SILVERLIGHT
+		#region Sequential Methods
+		public virtual TwitterUser VerifyCredentials()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterRateLimitStatus GetRateLimitStatus()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterError EndSession()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount GetAccountSettings()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount UpdateAccountSettings(int trend_location_woeid)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount UpdateAccountSettings(bool sleepTimeEnabled)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount UpdateAccountSettings(bool sleepTimeEnabled, int startSleepTime, int endSleepTime)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount UpdateAccountSettings(string lang)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount UpdateAccountSettings(string timeZone, string lang)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateDeliveryDevice(TwitterDeliveryDevice device)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor, string sidebarBorderColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfileColors(string backgroundColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfileColors(string backgroundColor, string textColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfileColors(string backgroundColor, string textColor, string linkColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfileImage(string path)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfileBackgroundImage(string path)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UpdateProfile(string name, string description, string email, string url, string location)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser BlockUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser BlockUser(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UnblockUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UnblockUser(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser VerifyBlocking(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser VerifyBlocking(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> ListBlockedUsers()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> ListBlockedUsers(int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<int> ListBlockedUserIds()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceived()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceived(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceived(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceivedSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceivedSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceivedSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceivedBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceivedBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesReceivedBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSent()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSent(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSent(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSentSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSentSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSentSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSentBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSentBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> ListDirectMessagesSentBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage DeleteDirectMessage(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage DeleteDirectMessage(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage SendDirectMessage(int userId, string text)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage SendDirectMessage(string screenName, string text)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweets()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweets(int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweets(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweetsFor(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweetsFor(int userId, int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweetsFor(int userId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweetsFor(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweetsFor(string userScreenName, int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListFavoriteTweetsFor(string userScreenName, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus FavoriteTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus UnfavoriteTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> ListFriendIdsOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> ListFriendIdsOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> ListFollowerIdsOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> ListFollowerIdsOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser FollowUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser FollowUser(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UnfollowUser(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UnfollowUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> GetIncomingFriendRequests()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> GetIncomingFriendRequests(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> GetOutgoingFriendRequests()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> GetOutgoingFriendRequests(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterFriendship GetFriendshipInfo(string sourceScreenName, string targetScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterFriendship GetFriendshipInfo(int sourceId, int targetId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList CreateList(string listOwner, string name)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList CreateList(string listOwner, string name, string description)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList CreateList(string listOwner, string name, string description, string mode)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterList> ListListsFor(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList GetList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList DeleteList(long listId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterList> ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListListMembers(string ownerScreenName, string slug, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser AddListMember(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser RemoveListMember(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser VerifyListMembership(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterList> ListListSubscriptionsFor(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListListSubscribers(string ownerScreenName, string slug, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser FollowList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UnfollowList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser VerifyListSubscription(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser FollowUserNotifications(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser FollowUserNotifications(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UnfollowUserNotifications(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser UnfollowUserNotifications(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterSavedSearch> ListSavedSearches()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch GetSavedSearch(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch CreateSavedSearch(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch DeleteSavedSearch(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult Search(string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult Search(string q, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult Search(string q, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult Search(string q, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult Search(string q, int page, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult Search(string q, int page, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchSince(long since_id, string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchSince(long since_id, string q, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchSince(long since_id, string q, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchSince(long since_id, string q, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchSince(long since_id, string q, int page, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchSince(long since_id, string q, int page, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchBefore(long max_id, string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchBefore(long max_id, string q, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchBefore(long max_id, string q, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchBefore(long max_id, string q, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchBefore(long max_id, string q, int page, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult SearchBefore(long max_id, string q, int page, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnPublicTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimeline(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimeline(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimelineSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimelineSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimelineSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimelineBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimelineBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnHomeTimelineBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimeline(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimeline(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimelineSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimelineSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimelineSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimelineBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimelineBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnFriendsTimelineBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimeline(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimeline(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimelineSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimelineSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimelineSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimelineBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimelineBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnUserTimelineBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(int userId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(int userId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(string screenName, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(string screenName, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(string screenName, int count, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMe()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMe(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMe(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMeSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMeSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMeSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMeBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMeBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListTweetsMentioningMeBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMe()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMe(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMe(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMe(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMeSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMeSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMeBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMeBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsByMeBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMe()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMe(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMe(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMeSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMeSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMeSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMeBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMeBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsToMeBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweets()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweets(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweets(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweets(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweetsSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweetsSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweetsSince(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweetsBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> ListRetweetsOfMyTweetsBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListCurrentTrends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListCurrentTrends(string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListDailyTrends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListDailyTrends(DateTime date)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListDailyTrends(string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListDailyTrends(DateTime date, string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListWeeklyTrends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListWeeklyTrends(DateTime date)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListWeeklyTrends(string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends ListWeeklyTrends(DateTime date, string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<WhereOnEarthLocation> ListAvailableTrendsLocations()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<WhereOnEarthLocation> ListAvailableTrendsLocations(double lat)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<WhereOnEarthLocation> ListAvailableTrendsLocations(double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterLocalTrends ListLocalTrendsFor(long woeId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus GetTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus SendTweet(string status)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus SendTweet(string status, double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus SendTweet(string status, long inReplyToStatusId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus SendTweet(string status, long inReplyToStatusId, double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus DeleteTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus Retweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> Retweets(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> Retweets(long id, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> ListUsersWhoRetweeted(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> ListUsersWhoRetweeted(long id, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<int> ListUserIdsWhoRetweeted(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<int> ListUserIdsWhoRetweeted(long id, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFriends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFriends(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFriendsOf(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFriendsOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFriendsOf(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFriendsOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFollowers()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFollowers(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFollowersOf(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFollowersOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFollowersOf(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> ListFollowersOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser GetUserProfile()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser GetUserProfileFor(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser GetUserProfileFor(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> SearchForUser(string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> SearchForUser(string q, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> SearchForUser(string q, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> ListUserProfilesFor(IEnumerable<string> screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> ListUserProfilesFor(IEnumerable<int> userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> ListUserProfilesFor(IEnumerable<string> screenName, IEnumerable<int> userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual byte[] GetProfileImageFor(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual byte[] GetProfileImageFor(string screenName, TwitterProfileImageSize size)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUserSuggestions> ListSuggestedUserCategories()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUserSuggestions ListSuggestedUsers(string categorySlug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser ReportSpam(string screen_name)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser ReportSpam(int user_id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterPlace GetPlace(string id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> ReverseGeocode(double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> GeoSearchByCoordinates(double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> GeoSearchByQuery(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> GeoSearchByIp(string ip)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+#endif
+
+#if !WINDOWS_PHONE
+		#region Asynchronous Methods (with IAsyncResult)
+		public virtual IAsyncResult VerifyCredentials(Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetRateLimitStatus(Action<TwitterRateLimitStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult EndSession(Action<TwitterError, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetAccountSettings(Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateAccountSettings(int trend_location_woeid, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateAccountSettings(bool sleepTimeEnabled, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateAccountSettings(bool sleepTimeEnabled, int startSleepTime, int endSleepTime, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateAccountSettings(string lang, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateAccountSettings(string timeZone, string lang, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateDeliveryDevice(TwitterDeliveryDevice device, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor, string sidebarBorderColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfileColors(string backgroundColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfileColors(string backgroundColor, string textColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfileColors(string backgroundColor, string textColor, string linkColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfileImage(string path, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfileBackgroundImage(string path, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UpdateProfile(string name, string description, string email, string url, string location, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BlockUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BlockUser(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnblockUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnblockUser(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult VerifyBlocking(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult VerifyBlocking(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListBlockedUsers(Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListBlockedUsers(int page, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListBlockedUserIds(Action<IEnumerable<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceived(Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceived(int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceived(int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceivedSince(long sinceId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceivedSince(long sinceId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceivedSince(long sinceId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceivedBefore(long maxId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceivedBefore(long maxId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesReceivedBefore(long maxId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSent(Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSent(int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSent(int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSentSince(long sinceId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSentSince(long sinceId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSentSince(long sinceId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSentBefore(long maxId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSentBefore(long maxId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDirectMessagesSentBefore(long maxId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult DeleteDirectMessage(long id, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult DeleteDirectMessage(int id, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SendDirectMessage(int userId, string text, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SendDirectMessage(string screenName, string text, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweets(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweets(int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweets(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweetsFor(int userId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweetsFor(int userId, int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweetsFor(int userId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweetsFor(string userScreenName, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweetsFor(string userScreenName, int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFavoriteTweetsFor(string userScreenName, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult FavoriteTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnfavoriteTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriendIdsOf(string screenName, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriendIdsOf(int userId, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowerIdsOf(int userId, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowerIdsOf(string screenName, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult FollowUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult FollowUser(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnfollowUser(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnfollowUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetIncomingFriendRequests(Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetIncomingFriendRequests(long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetOutgoingFriendRequests(Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetOutgoingFriendRequests(long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetFriendshipInfo(string sourceScreenName, string targetScreenName, Action<TwitterFriendship, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetFriendshipInfo(int sourceId, int targetId, Action<TwitterFriendship, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult CreateList(string listOwner, string name, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult CreateList(string listOwner, string name, string description, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult CreateList(string listOwner, string name, string description, string mode, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListListsFor(string screenName, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetList(string ownerScreenName, string slug, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult DeleteList(long listId, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListListMembers(string ownerScreenName, string slug, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult AddListMember(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult RemoveListMember(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult VerifyListMembership(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListListSubscriptionsFor(string screenName, Action<IEnumerable<TwitterList>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListListSubscribers(string ownerScreenName, string slug, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult FollowList(string ownerScreenName, string slug, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnfollowList(string ownerScreenName, string slug, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult VerifyListSubscription(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult FollowUserNotifications(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult FollowUserNotifications(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnfollowUserNotifications(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult UnfollowUserNotifications(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListSavedSearches(Action<IEnumerable<TwitterSavedSearch>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetSavedSearch(long id, Action<TwitterSavedSearch, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult CreateSavedSearch(string query, Action<TwitterSavedSearch, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult DeleteSavedSearch(long id, Action<TwitterSavedSearch, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Search(string q, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Search(string q, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Search(string q, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Search(string q, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Search(string q, int page, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Search(string q, int page, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchSince(long since_id, string q, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchSince(long since_id, string q, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchSince(long since_id, string q, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchSince(long since_id, string q, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchSince(long since_id, string q, int page, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchSince(long since_id, string q, int page, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchBefore(long max_id, string q, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchBefore(long max_id, string q, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchBefore(long max_id, string q, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchBefore(long max_id, string q, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchBefore(long max_id, string q, int page, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchBefore(long max_id, string q, int page, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnPublicTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimeline(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimeline(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimelineSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimelineSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimelineSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimelineBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimelineBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnHomeTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimeline(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimeline(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimelineSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimelineSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimelineSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimelineBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimelineBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnFriendsTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimeline(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimeline(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimelineSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimelineSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimelineSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimelineBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimelineBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnUserTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimeline(int userId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimeline(int userId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimeline(int userId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimeline(string screenName, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimeline(string screenName, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimeline(string screenName, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimeline(string screenName, int count, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMe(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMe(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMeSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMeSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMeSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMeBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMeBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListTweetsMentioningMeBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMe(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMe(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMe(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMeSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMeSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMeBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMeBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsByMeBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMe(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMe(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMeSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMeSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMeSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMeBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMeBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsToMeBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweets(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweets(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweets(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweets(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweetsSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweetsSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweetsSince(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweetsBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListRetweetsOfMyTweetsBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListCurrentTrends(Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListCurrentTrends(string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDailyTrends(Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDailyTrends(DateTime date, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDailyTrends(string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListDailyTrends(DateTime date, string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListWeeklyTrends(Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListWeeklyTrends(DateTime date, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListWeeklyTrends(string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListWeeklyTrends(DateTime date, string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListAvailableTrendsLocations(Action<IEnumerable<WhereOnEarthLocation>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListAvailableTrendsLocations(double lat, Action<IEnumerable<WhereOnEarthLocation>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListAvailableTrendsLocations(double lat, double @long, Action<IEnumerable<WhereOnEarthLocation>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListLocalTrendsFor(long woeId, Action<TwitterLocalTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SendTweet(string status, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SendTweet(string status, double lat, double @long, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SendTweet(string status, long inReplyToStatusId, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SendTweet(string status, long inReplyToStatusId, double lat, double @long, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult DeleteTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Retweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Retweets(long id, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult Retweets(long id, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListUsersWhoRetweeted(long id, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListUsersWhoRetweeted(long id, int count, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListUserIdsWhoRetweeted(long id, Action<IEnumerable<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListUserIdsWhoRetweeted(long id, int count, Action<IEnumerable<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriends(Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriends(long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriendsOf(int userId, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriendsOf(int userId, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriendsOf(string screenName, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFriendsOf(string screenName, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowers(Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowers(long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowersOf(int userId, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowersOf(int userId, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowersOf(string screenName, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListFollowersOf(string screenName, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetUserProfile(Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetUserProfileFor(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetUserProfileFor(int id, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchForUser(string q, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchForUser(string q, int perPage, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult SearchForUser(string q, int page, int perPage, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListUserProfilesFor(IEnumerable<string> screenName, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListUserProfilesFor(IEnumerable<int> userId, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListUserProfilesFor(IEnumerable<string> screenName, IEnumerable<int> userId, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetProfileImageFor(string screenName, Action<byte[], TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetProfileImageFor(string screenName, TwitterProfileImageSize size, Action<byte[], TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListSuggestedUserCategories(Action<IEnumerable<TwitterUserSuggestions>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ListSuggestedUsers(string categorySlug, Action<TwitterUserSuggestions, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ReportSpam(string screen_name, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ReportSpam(int user_id, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GetPlace(string id, Action<TwitterPlace, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult ReverseGeocode(double lat, double @long, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GeoSearchByCoordinates(double lat, double @long, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GeoSearchByQuery(string query, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult GeoSearchByIp(string ip, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+#endif
+
+#if !WINDOWS_PHONE
+		#region Asynchronous Methods (with Begin/End pattern)
+		public virtual IAsyncResult BeginVerifyCredentials()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetRateLimitStatus()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginEndSession()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetAccountSettings()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateAccountSettings(int trend_location_woeid)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateAccountSettings(bool sleepTimeEnabled)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateAccountSettings(bool sleepTimeEnabled, int startSleepTime, int endSleepTime)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateAccountSettings(string lang)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateAccountSettings(string timeZone, string lang)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateDeliveryDevice(TwitterDeliveryDevice device)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor, string sidebarBorderColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfileColors(string backgroundColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfileColors(string backgroundColor, string textColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfileColors(string backgroundColor, string textColor, string linkColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfileImage(string path)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfileBackgroundImage(string path)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUpdateProfile(string name, string description, string email, string url, string location)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginBlockUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginBlockUser(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnblockUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnblockUser(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginVerifyBlocking(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginVerifyBlocking(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListBlockedUsers()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListBlockedUsers(int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListBlockedUserIds()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceived()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceived(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceived(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceivedSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceivedSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceivedSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceivedBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceivedBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesReceivedBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSent()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSent(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSent(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSentSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSentSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSentSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSentBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSentBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDirectMessagesSentBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginDeleteDirectMessage(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginDeleteDirectMessage(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSendDirectMessage(int userId, string text)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSendDirectMessage(string screenName, string text)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweets()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweets(int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweets(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweetsFor(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweetsFor(int userId, int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweetsFor(int userId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweetsFor(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweetsFor(string userScreenName, int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFavoriteTweetsFor(string userScreenName, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginFavoriteTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnfavoriteTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriendIdsOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriendIdsOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowerIdsOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowerIdsOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginFollowUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginFollowUser(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnfollowUser(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnfollowUser(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetIncomingFriendRequests()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetIncomingFriendRequests(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetOutgoingFriendRequests()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetOutgoingFriendRequests(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetFriendshipInfo(string sourceScreenName, string targetScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetFriendshipInfo(int sourceId, int targetId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginCreateList(string listOwner, string name)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginCreateList(string listOwner, string name, string description)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginCreateList(string listOwner, string name, string description, string mode)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListListsFor(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginDeleteList(long listId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListListMembers(string ownerScreenName, string slug, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginAddListMember(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginRemoveListMember(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginVerifyListMembership(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListListSubscriptionsFor(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListListSubscribers(string ownerScreenName, string slug, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginFollowList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnfollowList(string ownerScreenName, string slug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginVerifyListSubscription(string ownerScreenName, string slug, string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginFollowUserNotifications(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginFollowUserNotifications(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnfollowUserNotifications(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginUnfollowUserNotifications(string userScreenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListSavedSearches()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetSavedSearch(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginCreateSavedSearch(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginDeleteSavedSearch(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearch(string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearch(string q, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearch(string q, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearch(string q, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearch(string q, int page, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearch(string q, int page, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchSince(long since_id, string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchSince(long since_id, string q, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchSince(long since_id, string q, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchSince(long since_id, string q, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchSince(long since_id, string q, int page, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchSince(long since_id, string q, int page, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchBefore(long max_id, string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchBefore(long max_id, string q, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchBefore(long max_id, string q, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchBefore(long max_id, string q, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchBefore(long max_id, string q, int page, int rpp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchBefore(long max_id, string q, int page, int rpp, TwitterSearchResultType resultType)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnPublicTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimeline(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimeline(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimelineSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimelineSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimelineSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimelineBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimelineBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnHomeTimelineBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimeline(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimeline(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimelineSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimelineSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimelineSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimelineBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimelineBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnFriendsTimelineBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimeline()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimeline(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimeline(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimelineSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimelineSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimelineSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimelineBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimelineBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnUserTimelineBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimeline(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimeline(int userId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimeline(int userId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimeline(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimeline(string screenName, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimeline(string screenName, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimeline(string screenName, int count, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, bool include_rts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMe()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMe(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMe(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMeSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMeSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMeSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMeBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMeBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListTweetsMentioningMeBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMe()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMe(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMe(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMe(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMeSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMeSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMeBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMeBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsByMeBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMe()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMe(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMe(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMeSince(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMeSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMeSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMeBefore(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMeBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsToMeBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweets()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweets(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweets(int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweets(long sinceId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweetsSince(long sinceId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweetsSince(long sinceId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweetsSince(long maxId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweetsBefore(long maxId, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListRetweetsOfMyTweetsBefore(long maxId, int page, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListCurrentTrends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListCurrentTrends(string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDailyTrends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDailyTrends(DateTime date)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDailyTrends(string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListDailyTrends(DateTime date, string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListWeeklyTrends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListWeeklyTrends(DateTime date)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListWeeklyTrends(string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListWeeklyTrends(DateTime date, string exclude)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListAvailableTrendsLocations()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListAvailableTrendsLocations(double lat)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListAvailableTrendsLocations(double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListLocalTrendsFor(long woeId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSendTweet(string status)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSendTweet(string status, double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSendTweet(string status, long inReplyToStatusId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSendTweet(string status, long inReplyToStatusId, double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginDeleteTweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginRetweet(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginRetweets(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginRetweets(long id, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListUsersWhoRetweeted(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListUsersWhoRetweeted(long id, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListUserIdsWhoRetweeted(long id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListUserIdsWhoRetweeted(long id, int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriends()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriends(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriendsOf(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriendsOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriendsOf(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFriendsOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowers()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowers(long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowersOf(int userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowersOf(int userId, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowersOf(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListFollowersOf(string screenName, long cursor)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetUserProfile()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetUserProfileFor(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetUserProfileFor(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchForUser(string q)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchForUser(string q, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginSearchForUser(string q, int page, int perPage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListUserProfilesFor(IEnumerable<string> screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListUserProfilesFor(IEnumerable<int> userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListUserProfilesFor(IEnumerable<string> screenName, IEnumerable<int> userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetProfileImageFor(string screenName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetProfileImageFor(string screenName, TwitterProfileImageSize size)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListSuggestedUserCategories()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginListSuggestedUsers(string categorySlug)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginReportSpam(string screen_name)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginReportSpam(int user_id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGetPlace(string id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginReverseGeocode(double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGeoSearchByCoordinates(double lat, double @long)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGeoSearchByQuery(string query)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IAsyncResult BeginGeoSearchByIp(string ip)
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyCredentials(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyCredentials(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterRateLimitStatus EndGetRateLimitStatus(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterRateLimitStatus EndGetRateLimitStatus(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterError EndEndSession(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterError EndEndSession(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount EndGetAccountSettings(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount EndGetAccountSettings(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount EndUpdateAccountSettings(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterAccount EndUpdateAccountSettings(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateDeliveryDevice(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateDeliveryDevice(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfileColors(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfileColors(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfileImage(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfileImage(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfileBackgroundImage(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfileBackgroundImage(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfile(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUpdateProfile(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndBlockUser(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndBlockUser(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnblockUser(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnblockUser(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyBlocking(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyBlocking(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndListBlockedUsers(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndListBlockedUsers(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<int> EndListBlockedUserIds(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<int> EndListBlockedUserIds(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesReceived(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesReceived(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesReceivedSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesReceivedSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesReceivedBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesReceivedBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesSent(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesSent(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesSentSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesSentSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesSentBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterDirectMessage> EndListDirectMessagesSentBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage EndDeleteDirectMessage(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage EndDeleteDirectMessage(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage EndSendDirectMessage(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterDirectMessage EndSendDirectMessage(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListFavoriteTweets(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListFavoriteTweets(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListFavoriteTweetsFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListFavoriteTweetsFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndFavoriteTweet(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndFavoriteTweet(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndUnfavoriteTweet(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndUnfavoriteTweet(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndListFriendIdsOf(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndListFriendIdsOf(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndListFollowerIdsOf(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndListFollowerIdsOf(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndFollowUser(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndFollowUser(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnfollowUser(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnfollowUser(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndGetIncomingFriendRequests(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndGetIncomingFriendRequests(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndGetOutgoingFriendRequests(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<int> EndGetOutgoingFriendRequests(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterFriendship EndGetFriendshipInfo(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterFriendship EndGetFriendshipInfo(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList EndCreateList(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList EndCreateList(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterList> EndListListsFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterList> EndListListsFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList EndGetList(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList EndGetList(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList EndDeleteList(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterList EndDeleteList(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnList(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnList(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnListSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnListSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnListBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnListBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterList> EndListListMembershipsFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterList> EndListListMembershipsFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListListMembers(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListListMembers(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndAddListMember(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndAddListMember(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndRemoveListMember(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndRemoveListMember(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyListMembership(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyListMembership(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterList> EndListListSubscriptionsFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterList> EndListListSubscriptionsFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListListSubscribers(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListListSubscribers(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndFollowList(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndFollowList(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnfollowList(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnfollowList(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyListSubscription(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndVerifyListSubscription(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndFollowUserNotifications(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndFollowUserNotifications(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnfollowUserNotifications(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndUnfollowUserNotifications(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterSavedSearch> EndListSavedSearches(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterSavedSearch> EndListSavedSearches(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch EndGetSavedSearch(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch EndGetSavedSearch(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch EndCreateSavedSearch(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch EndCreateSavedSearch(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch EndDeleteSavedSearch(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSavedSearch EndDeleteSavedSearch(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult EndSearch(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult EndSearch(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult EndSearchSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult EndSearchSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult EndSearchBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterSearchResult EndSearchBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnPublicTimeline(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnPublicTimeline(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnHomeTimeline(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnHomeTimeline(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnHomeTimelineSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnHomeTimelineSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnHomeTimelineBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnHomeTimelineBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnFriendsTimeline(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnFriendsTimeline(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnFriendsTimelineSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnFriendsTimelineSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnFriendsTimelineBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnFriendsTimelineBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnUserTimeline(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnUserTimeline(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnUserTimelineSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnUserTimelineSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnUserTimelineBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnUserTimelineBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimeline(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimeline(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimelineSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimelineSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimelineBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimelineBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsMentioningMe(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsMentioningMe(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsMentioningMeSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsMentioningMeSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsMentioningMeBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListTweetsMentioningMeBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsByMe(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsByMe(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsByMeSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsByMeSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsByMeBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsByMeBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsToMe(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsToMe(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsToMeSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsToMeSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsToMeBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsToMeBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsOfMyTweets(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsOfMyTweets(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsOfMyTweetsSince(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsOfMyTweetsSince(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsOfMyTweetsBefore(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndListRetweetsOfMyTweetsBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends EndListCurrentTrends(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends EndListCurrentTrends(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends EndListDailyTrends(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends EndListDailyTrends(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends EndListWeeklyTrends(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterTrends EndListWeeklyTrends(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<WhereOnEarthLocation> EndListAvailableTrendsLocations(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<WhereOnEarthLocation> EndListAvailableTrendsLocations(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterLocalTrends EndListLocalTrendsFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterLocalTrends EndListLocalTrendsFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndGetTweet(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndGetTweet(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndSendTweet(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndSendTweet(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndDeleteTweet(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndDeleteTweet(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndRetweet(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterStatus EndRetweet(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndRetweets(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterStatus> EndRetweets(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndListUsersWhoRetweeted(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndListUsersWhoRetweeted(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<int> EndListUserIdsWhoRetweeted(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<int> EndListUserIdsWhoRetweeted(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFriends(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFriends(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFriendsOf(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFriendsOf(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFollowers(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFollowers(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFollowersOf(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterCursorList<TwitterUser> EndListFollowersOf(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndGetUserProfile(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndGetUserProfile(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndGetUserProfileFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndGetUserProfileFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndSearchForUser(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndSearchForUser(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndListUserProfilesFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUser> EndListUserProfilesFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual byte[] EndGetProfileImageFor(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual byte[] EndGetProfileImageFor(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUserSuggestions> EndListSuggestedUserCategories(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterUserSuggestions> EndListSuggestedUserCategories(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUserSuggestions EndListSuggestedUsers(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUserSuggestions EndListSuggestedUsers(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndReportSpam(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterUser EndReportSpam(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterPlace EndGetPlace(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual TwitterPlace EndGetPlace(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndReverseGeocode(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndReverseGeocode(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndGeoSearchByCoordinates(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndGeoSearchByCoordinates(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndGeoSearchByQuery(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndGeoSearchByQuery(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndGeoSearchByIp(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual IEnumerable<TwitterPlace> EndGeoSearchByIp(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+#endif
+
+#if WINDOWS_PHONE
+		#region Asynchronous Methods (without IAsyncResult)
+		public virtual void VerifyCredentials(Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetRateLimitStatus(Action<TwitterRateLimitStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void EndSession(Action<TwitterError, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetAccountSettings(Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateAccountSettings(int trend_location_woeid, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateAccountSettings(bool sleepTimeEnabled, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateAccountSettings(bool sleepTimeEnabled, int startSleepTime, int endSleepTime, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateAccountSettings(string lang, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateAccountSettings(string timeZone, string lang, Action<TwitterAccount, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateDeliveryDevice(TwitterDeliveryDevice device, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor, string sidebarBorderColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileColors(string backgroundColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileColors(string backgroundColor, string textColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileColors(string backgroundColor, string textColor, string linkColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileColors(string backgroundColor, string textColor, string linkColor, string sidebarFillColor, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileImage(string path, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileBackgroundImage(string path, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfile(string name, string description, string email, string url, string location, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void BlockUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void BlockUser(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnblockUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnblockUser(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void VerifyBlocking(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void VerifyBlocking(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListBlockedUsers(Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListBlockedUsers(int page, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListBlockedUserIds(Action<IEnumerable<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceived(Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceived(int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceived(int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceivedSince(long sinceId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceivedSince(long sinceId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceivedSince(long sinceId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceivedBefore(long maxId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceivedBefore(long maxId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesReceivedBefore(long maxId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSent(Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSent(int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSent(int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSentSince(long sinceId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSentSince(long sinceId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSentSince(long sinceId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSentBefore(long maxId, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSentBefore(long maxId, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDirectMessagesSentBefore(long maxId, int page, int count, Action<IEnumerable<TwitterDirectMessage>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void DeleteDirectMessage(long id, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void DeleteDirectMessage(int id, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SendDirectMessage(int userId, string text, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SendDirectMessage(string screenName, string text, Action<TwitterDirectMessage, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweets(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweets(int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweets(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweetsFor(int userId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweetsFor(int userId, int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweetsFor(int userId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweetsFor(string userScreenName, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweetsFor(string userScreenName, int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFavoriteTweetsFor(string userScreenName, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void FavoriteTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnfavoriteTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriendIdsOf(string screenName, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriendIdsOf(int userId, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowerIdsOf(int userId, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowerIdsOf(string screenName, long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void FollowUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void FollowUser(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnfollowUser(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnfollowUser(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetIncomingFriendRequests(Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetIncomingFriendRequests(long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetOutgoingFriendRequests(Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetOutgoingFriendRequests(long cursor, Action<TwitterCursorList<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetFriendshipInfo(string sourceScreenName, string targetScreenName, Action<TwitterFriendship, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetFriendshipInfo(int sourceId, int targetId, Action<TwitterFriendship, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void CreateList(string listOwner, string name, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void CreateList(string listOwner, string name, string description, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void CreateList(string listOwner, string name, string description, string mode, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListListsFor(string screenName, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetList(string ownerScreenName, string slug, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void DeleteList(long listId, Action<TwitterList, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnList(string ownerScreenName, string slug, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListSince(string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnListBefore(string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListListMembershipsFor(string screenName, bool filterToOwnedLists, long cursor, Action<TwitterCursorList<TwitterList>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListListMembers(string ownerScreenName, string slug, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void AddListMember(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void RemoveListMember(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void VerifyListMembership(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListListSubscriptionsFor(string screenName, Action<IEnumerable<TwitterList>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListListSubscribers(string ownerScreenName, string slug, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void FollowList(string ownerScreenName, string slug, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnfollowList(string ownerScreenName, string slug, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void VerifyListSubscription(string ownerScreenName, string slug, string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void FollowUserNotifications(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void FollowUserNotifications(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnfollowUserNotifications(int userId, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UnfollowUserNotifications(string userScreenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListSavedSearches(Action<IEnumerable<TwitterSavedSearch>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetSavedSearch(long id, Action<TwitterSavedSearch, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void CreateSavedSearch(string query, Action<TwitterSavedSearch, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void DeleteSavedSearch(long id, Action<TwitterSavedSearch, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Search(string q, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Search(string q, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Search(string q, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Search(string q, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Search(string q, int page, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Search(string q, int page, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchSince(long since_id, string q, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchSince(long since_id, string q, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchSince(long since_id, string q, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchSince(long since_id, string q, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchSince(long since_id, string q, int page, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchSince(long since_id, string q, int page, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchBefore(long max_id, string q, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchBefore(long max_id, string q, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchBefore(long max_id, string q, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchBefore(long max_id, string q, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchBefore(long max_id, string q, int page, int rpp, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchBefore(long max_id, string q, int page, int rpp, TwitterSearchResultType resultType, Action<TwitterSearchResult, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnPublicTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimeline(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimeline(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimelineSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimelineSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimelineSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimelineBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimelineBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnHomeTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimeline(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimeline(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimelineSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimelineSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimelineSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimelineBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimelineBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnFriendsTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimeline(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimeline(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimeline(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimelineSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimelineSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimelineSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimelineBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimelineBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnUserTimelineBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimeline(int userId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimeline(int userId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimeline(int userId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineSince(int userId, long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(int userId, long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimeline(string screenName, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimeline(string screenName, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimeline(string screenName, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimeline(string screenName, int count, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, bool include_rts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMe(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMe(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMeSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMeSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMeSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMeBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMeBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListTweetsMentioningMeBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMe(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMe(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMe(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMeSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMeSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMeBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMeBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsByMeBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMe(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMe(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMeSince(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMeSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMeSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMeBefore(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMeBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsToMeBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweets(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweets(int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweets(int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweets(long sinceId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweetsSince(long sinceId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweetsSince(long sinceId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweetsSince(long maxId, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweetsBefore(long maxId, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListRetweetsOfMyTweetsBefore(long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListCurrentTrends(Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListCurrentTrends(string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDailyTrends(Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDailyTrends(DateTime date, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDailyTrends(string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListDailyTrends(DateTime date, string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListWeeklyTrends(Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListWeeklyTrends(DateTime date, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListWeeklyTrends(string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListWeeklyTrends(DateTime date, string exclude, Action<TwitterTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListAvailableTrendsLocations(Action<IEnumerable<WhereOnEarthLocation>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListAvailableTrendsLocations(double lat, Action<IEnumerable<WhereOnEarthLocation>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListAvailableTrendsLocations(double lat, double @long, Action<IEnumerable<WhereOnEarthLocation>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListLocalTrendsFor(long woeId, Action<TwitterLocalTrends, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SendTweet(string status, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SendTweet(string status, double lat, double @long, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SendTweet(string status, long inReplyToStatusId, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SendTweet(string status, long inReplyToStatusId, double lat, double @long, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void DeleteTweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Retweet(long id, Action<TwitterStatus, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Retweets(long id, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void Retweets(long id, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListUsersWhoRetweeted(long id, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListUsersWhoRetweeted(long id, int count, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListUserIdsWhoRetweeted(long id, Action<IEnumerable<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListUserIdsWhoRetweeted(long id, int count, Action<IEnumerable<int>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriends(Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriends(long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriendsOf(int userId, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriendsOf(int userId, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriendsOf(string screenName, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFriendsOf(string screenName, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowers(Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowers(long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowersOf(int userId, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowersOf(int userId, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowersOf(string screenName, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListFollowersOf(string screenName, long cursor, Action<TwitterCursorList<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetUserProfile(Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetUserProfileFor(string screenName, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetUserProfileFor(int id, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchForUser(string q, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchForUser(string q, int perPage, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void SearchForUser(string q, int page, int perPage, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListUserProfilesFor(IEnumerable<string> screenName, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListUserProfilesFor(IEnumerable<int> userId, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListUserProfilesFor(IEnumerable<string> screenName, IEnumerable<int> userId, Action<IEnumerable<TwitterUser>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetProfileImageFor(string screenName, Action<byte[], TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetProfileImageFor(string screenName, TwitterProfileImageSize size, Action<byte[], TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListSuggestedUserCategories(Action<IEnumerable<TwitterUserSuggestions>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ListSuggestedUsers(string categorySlug, Action<TwitterUserSuggestions, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ReportSpam(string screen_name, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ReportSpam(int user_id, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GetPlace(string id, Action<TwitterPlace, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void ReverseGeocode(double lat, double @long, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GeoSearchByCoordinates(double lat, double @long, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GeoSearchByQuery(string query, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void GeoSearchByIp(string ip, Action<IEnumerable<TwitterPlace>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		public virtual void UpdateProfileImage(string path, System.IO.Stream file, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		
 
 		#endregion
 #endif	

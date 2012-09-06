@@ -164,6 +164,80 @@ namespace TweetSharp
 
 	#endregion
 }
+
+namespace TweetSharp
+{
+#region Base for creating mock services.
+	public class BaseMockTwitterService : ITwitterService
+	{	
+#if !SILVERLIGHT
+		#region Sequential Methods
+<# foreach(TweetSharpMethod method in methods) { #>
+		public virtual <#= method.Type #> <#= method.Name #>(<# var count = method.Parameters.Count(); for(var i = 0; i < count; i++) { var parameter = method.Parameters[i]; #><#= parameter.Type #> <#= parameter.Name #><# if(i < count - 1) { #>, <# } #><# } #>)
+		{
+			throw new NotImplementedException();
+		}
+
+<# } #>
+		#endregion
+#endif
+
+#if !WINDOWS_PHONE
+		#region Asynchronous Methods (with IAsyncResult)
+<# foreach(TweetSharpMethod method in methods) { #>
+		public virtual IAsyncResult <#= method.Name #>(<# var count = method.Parameters.Count(); for(var i = 0; i < count; i++) { var parameter = method.Parameters[i]; #><#= parameter.Type #> <#= parameter.Name #><# if(i < count - 1) { #>, <# } #><# } #><# if(count > 0) {#>, <# } #>Action<<#= method.Type #>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+
+<# } #>
+		#endregion
+#endif
+
+#if !WINDOWS_PHONE
+		#region Asynchronous Methods (with Begin/End pattern)
+<# foreach(TweetSharpMethod method in methods) { #>
+		public virtual IAsyncResult Begin<#= method.Name #>(<# var count = method.Parameters.Count(); for(var i = 0; i < count; i++) { var parameter = method.Parameters[i]; #><#= parameter.Type #> <#= parameter.Name #><# if(i < count - 1) { #>, <# } #><# } #>)
+		{
+			throw new NotImplementedException();
+		}
+
+<# } #>
+<# foreach(TweetSharpMethod method in methods.GroupBy(p => p.Name).Select(g => g.First())) { #>
+		public virtual <#= method.Type #> End<#= method.Name #>(IAsyncResult result) 
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual <#= method.Type #> End<#= method.Name #>(IAsyncResult result, TimeSpan timeout) 
+		{
+			throw new NotImplementedException();
+		}
+
+<# } #>
+		#endregion
+#endif
+
+#if WINDOWS_PHONE
+		#region Asynchronous Methods (without IAsyncResult)
+<# foreach(TweetSharpMethod method in methods) { #>
+		public virtual void <#= method.Name #>(<# var count = method.Parameters.Count(); for(var i = 0; i < count; i++) { var parameter = method.Parameters[i]; #><#= parameter.Type #> <#= parameter.Name #><# if(i < count - 1) { #>, <# } #><# } #><# if(count > 0) {#>, <# } #>Action<<#= method.Type #>, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+<# } #>
+		public virtual void UpdateProfileImage(string path, System.IO.Stream file, Action<TwitterUser, TwitterResponse> action)
+		{
+			throw new NotImplementedException();
+		}
+		
+
+		#endregion
+#endif	
+	}
+
+	#endregion
+}
 <#+
 	internal class Helpers
 	{

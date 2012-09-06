@@ -17,6 +17,15 @@ IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListSince, string owne
 IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListBefore, string ownerScreenName, string slug, long maxId
 IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListBefore, string ownerScreenName, string slug, long maxId, int perPage
 IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListBefore, string ownerScreenName, string slug, long maxId, int page, int perPage
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnList, string ownerScreenName, string slug, bool include_rts
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnList, string ownerScreenName, string slug, bool include_rts, int perPage
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnList, string ownerScreenName, string slug, bool include_rts, int page, int perPage
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListSince, string ownerScreenName, string slug, long sinceId, bool include_rts
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListSince, string ownerScreenName, string slug, long sinceId, bool include_rts, int perPage
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListSince, string ownerScreenName, string slug, long sinceId, bool include_rts, int page, int perPage
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListBefore, string ownerScreenName, string slug, long maxId, bool include_rts
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListBefore, string ownerScreenName, string slug, long maxId, bool include_rts, int perPage
+IEnumerable<TwitterStatus>, "lists/statuses", ListTweetsOnListBefore, string ownerScreenName, string slug, long maxId, bool include_rts, int page, int perPage
 
 // List Memberships Resources
 

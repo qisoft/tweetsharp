@@ -43,10 +43,12 @@ IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserT
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimeline, string screenName
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimeline, string screenName, int count
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimeline, string screenName, int page, int count
+IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimeline, string screenName, int count, bool include_rts
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimelineSince, string screenName, long sinceId
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimelineSince, string screenName, long sinceId, int count
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimelineSince, string screenName, long sinceId, int page, int count
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimelineBefore, string screenName, long maxId
+IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimelineBefore, string screenName, long maxId, bool include_rts
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimelineBefore, string screenName, long maxId, int page
 IEnumerable<TwitterStatus>, "statuses/user_timeline", ListTweetsOnSpecifiedUserTimelineBefore, string screenName, long maxId, int page, int count
 

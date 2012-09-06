@@ -43,7 +43,6 @@ namespace TweetSharp
         {
         }
 
-
         private bool GetRandBool()
         {
             if((rand.Next() % 2) == 0)
@@ -90,6 +89,11 @@ namespace TweetSharp
                 ScreenName = name,               
             };
         }
+
+        public void UpdateProfileImage(string path, Action<TwitterUser, TwitterResponse> action)
+        {
+        }
+
 
         private TwitterResponse GetGoodResponse()
         {
@@ -1701,7 +1705,7 @@ namespace TweetSharp
             throw new NotImplementedException();
         }
 
-        public virtual void ReportSpam(long id, Action<TwitterUser, TwitterResponse> action)
+        public virtual void ReportSpam(int id, Action<TwitterUser, TwitterResponse> action)
         {
             var user = CreateSampleUser();
             user.Id = (int)id;

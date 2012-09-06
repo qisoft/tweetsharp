@@ -29,3 +29,6 @@ byte[], "users/profile_image/{screen_name}", GetProfileImageFor, string screenNa
 
 IEnumerable<TwitterUserSuggestions>, "users/suggestions", ListSuggestedUserCategories
 TwitterUserSuggestions, "/users/suggestions/{category_slug}", ListSuggestedUsers, string categorySlug
+
+TwitterUser, "users/report_spam", ReportSpam, string screen_name
+TwitterUser, "users/report_spam", ReportSpam, int user_id

@@ -67,6 +67,9 @@
     </Compile>
     <Compile Include="..\tweetsharp.next\generated\TwitterService.generated.cs">
       <Link>Generated\TwitterService.generated.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TwitterService.tt</DependentUpon>
     </Compile>
     <Compile Include="..\TweetSharp.Next\Globals.cs">
       <Link>Globals.cs</Link>
@@ -222,6 +225,56 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\TweetSharp.Next\Generated\TwitterService.tt">
+      <Link>TwitterService.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TwitterService.generated.cs</LastGenOutput>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Account.json">
+      <Link>Generated\_TwitterService.Account.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Blocks.json">
+      <Link>Generated\_TwitterService.Blocks.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.DirectMessages.json">
+      <Link>Generated\_TwitterService.DirectMessages.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Favorites.json">
+      <Link>Generated\_TwitterService.Favorites.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.FriendsFollowers.json">
+      <Link>Generated\_TwitterService.FriendsFollowers.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Friendships.json">
+      <Link>Generated\_TwitterService.Friendships.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Lists.json">
+      <Link>Generated\_TwitterService.Lists.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Notifications.json">
+      <Link>Generated\_TwitterService.Notifications.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Places.json">
+      <Link>Generated\_TwitterService.Places.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.SavedSearches.json">
+      <Link>Generated\_TwitterService.SavedSearches.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Search.json">
+      <Link>Generated\_TwitterService.Search.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Timelines.json">
+      <Link>Generated\_TwitterService.Timelines.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Trends.json">
+      <Link>Generated\_TwitterService.Trends.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Tweets.json">
+      <Link>Generated\_TwitterService.Tweets.json</Link>
+    </None>
+    <None Include="..\TweetSharp.Next\Generated\_TwitterService.Users.json">
+      <Link>Generated\_TwitterService.Users.json</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +282,9 @@
       <Project>{3059FD1C-4B4B-4460-A0D4-53C84CCE6CAC}</Project>
       <Name>Hammock.WindowsPhone</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

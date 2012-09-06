@@ -88,6 +88,8 @@ namespace TweetSharp
 		void <#= method.Name #>(<# var count = method.Parameters.Count(); for(var i = 0; i < count; i++) { var parameter = method.Parameters[i]; #><#= parameter.Type #> <#= parameter.Name #><# if(i < count - 1) { #>, <# } #><# } #><# if(count > 0) {#>, <# } #>Action<<#= method.Type #>, TwitterResponse> action);
 
 <# } #>
+
+		void UpdateProfileImage(string path, System.IO.Stream file, Action<TwitterUser, TwitterResponse> action);
 		#endregion
 #endif		
 	}

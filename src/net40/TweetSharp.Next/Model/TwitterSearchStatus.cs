@@ -36,6 +36,8 @@ namespace TweetSharp
         private TwitterGeoLocation _geoLocation;
         private TwitterEntities _entities;
 
+        public bool IsRetweeted { get { return false; } }
+
         public string AuthorName
         {
             get

@@ -15,7 +15,7 @@ namespace TweetSharp
         /// </summary>
         public virtual void CancelStreaming()
         {
-            if(_userStreamingClient != null)
+            if (_userStreamingClient != null)
             {
                 _userStreamingClient.CancelStreaming();
             }
@@ -61,7 +61,7 @@ namespace TweetSharp
 #if !WINDOWS_PHONE
             return 
 #endif
-            WithHammockUserStreaming(options, action, "user.json");
+            WithHammockUserStreaming(options, action, "user.json?delimited=length");
         }
 
 #if !WINDOWS_PHONE
@@ -73,11 +73,11 @@ namespace TweetSharp
             var request = PrepareHammockQuery(path);
 #if !WINDOWS_PHONE
             return 
-#endif 
+#endif
             WithHammockStreamingImpl(_userStreamingClient, request, options, action);
         }
 
-        #if !WINDOWS_PHONE
+#if !WINDOWS_PHONE
         private IAsyncResult WithHammockSearchStreaming<T>(StreamOptions options, Action<T, TwitterResponse> action, string path) where T : class
 #else
         private void WithHammockSearchStreaming<T>(StreamOptions options, Action<T, TwitterResponse> action, string path) where T : class
@@ -86,7 +86,7 @@ namespace TweetSharp
             var request = PrepareHammockQuery(path);
 #if !WINDOWS_PHONE
             return 
-#endif 
+#endif
             WithHammockStreamingImpl(_searchStreamingClient, request, options, action);
         }
 
@@ -99,22 +99,22 @@ namespace TweetSharp
             request.StreamOptions = options;
             request.Method = WebMethod.Get;
 #if SILVERLIGHT
-            request.AddHeader("X-User-Agent", client.UserAgent); 
+            request.AddHeader("X-User-Agent", client.UserAgent);
 #endif
-            
+
 #if !WINDOWS_PHONE
             return
 #endif
             client.BeginRequest(request, new RestCallback<T>((req, resp, state) =>
             {
                 Exception exception;
-                var entity = TryAsyncResponse(() => 
-                        {
+                var entity = TryAsyncResponse(() =>
+                {
 #if !SILVERLIGHT
                             SetResponse(resp);
 #endif
-                            return resp.ContentEntity;
-                        },
+                    return resp.ContentEntity;
+                },
                         out exception);
                 action(entity, new TwitterResponse(resp, exception));
             }));

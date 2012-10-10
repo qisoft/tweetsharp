@@ -48,6 +48,14 @@ namespace TweetSharp
             }
         }
 
+        public bool IsRetweeted
+        {
+            get
+            {
+                return RetweetedStatus != null;
+            }
+        }
+
         private static string TrimUrl(string url)
         {
             if (url == null)

@@ -35,6 +35,7 @@ namespace TweetSharp
         private DateTime _createdDate;
         private TwitterEntities _entities;
 
+        public bool IsRetweeted { get { return false; } }
 
         public string AuthorName
         {

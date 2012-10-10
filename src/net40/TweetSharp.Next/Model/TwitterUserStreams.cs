@@ -50,6 +50,8 @@ namespace TweetSharp
     {
         private TwitterStatus _status;
 
+        public bool IsRetweeted { get { return Status != null && Status.IsRetweeted; } }
+
         public string AuthorName
         {
             get
@@ -121,6 +123,8 @@ namespace TweetSharp
     public class TwitterUserStreamDirectMessage: TwitterStreamArtifact, ITweetable
     {
         private TwitterDirectMessage _dm;
+
+        public bool IsRetweeted { get { return false; } }
 
         public string AuthorName
         {

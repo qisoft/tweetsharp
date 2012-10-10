@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace TweetSharp
 {
@@ -61,8 +62,17 @@ namespace TweetSharp
             var indexes = names.Select(n => segments.IndexOf(n) + 1).ToList();
             for (var i = 0; i < indexes.Count(); i++)
             {
-                var value = segments[indexes[i]].ToString();
-                segments[indexes[i]] = Uri.EscapeDataString(value);
+                var value = segments[indexes[i]];
+                if (value is long)
+                    segments[indexes[i]] = ((long)value).ToString(CultureInfo.InvariantCulture);
+                else if (value is double)
+                    segments[indexes[i]] = ((double)value).ToString(CultureInfo.InvariantCulture);
+                else if (value is float)
+                    segments[indexes[i]] = ((float)value).ToString(CultureInfo.InvariantCulture);
+                else if (value is decimal)
+                    segments[indexes[i]] = ((decimal)value).ToString(CultureInfo.InvariantCulture);
+                else
+                    segments[indexes[i]] = Uri.EscapeDataString(value.ToString());
             }
         }
     }

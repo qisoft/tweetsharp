@@ -105,7 +105,7 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual TwitterEntityType EntityType { get; protected set; }
+        public virtual TwitterEntityType EntityType { get; set; }
 
 #if !Smartphone && !NET20
         [DataMember]

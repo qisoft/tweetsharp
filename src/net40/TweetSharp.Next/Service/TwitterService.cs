@@ -157,7 +157,7 @@ namespace TweetSharp
                           {
                               Authority = Globals.RestAPIAuthority,
                               QueryHandling = QueryHandling.AppendToParameters,
-                              VersionPath = "1",
+                              VersionPath = "1.1",
                               Serializer = _json,
                               Deserializer = _json,
                               DecompressionMethods = DecompressionMethods.GZip,

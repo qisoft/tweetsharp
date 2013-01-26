@@ -371,6 +371,10 @@ namespace TweetSharp
                 }
 
                 _createdDate = value;
+
+                if (_createdDate.Kind == DateTimeKind.Unspecified)
+                    _createdDate = new DateTime(_createdDate.Ticks, DateTimeKind.Utc);
+
                 OnPropertyChanged("CreatedDate");
             }
         }

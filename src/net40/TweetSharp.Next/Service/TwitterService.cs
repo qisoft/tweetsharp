@@ -601,5 +601,38 @@ namespace TweetSharp
             }
             return entity;
         }
+
+        // methods which cannot be generated.
+
+        public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimeline(string screenName, TimelineOptions opts)
+        {
+            string str = "";
+            if (opts.IncludeRetweets)
+            {
+                str += "&include_rts=true";
+            }
+
+            if (opts.NumberOfTweets > 0)
+            {
+                str += "&count=" + opts.NumberOfTweets;
+            }
+
+            return WithHammock<IEnumerable<TwitterStatus>>("statuses/user_timeline", FormatAsString, "?screen_name=", screenName, str);
+        }
+
     }
+
+    public class TimelineOptions
+    {
+        public bool IncludeRetweets { get; set; }
+        public int NumberOfTweets { get; set; }
+
+        public TimelineOptions()
+        {
+            IncludeRetweets = false;
+            NumberOfTweets = 0;
+        }
+    }
+
+
 }

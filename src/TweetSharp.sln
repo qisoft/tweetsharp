@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetSharp", "net40\TweetSharp.Next\TweetSharp.csproj", "{10BFAA13-B836-4B37-B2D3-D4FEB3F3C484}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetSharp.Tests", "net40\TweetSharp.Next.Tests\TweetSharp.Tests.csproj", "{D108B521-B7E1-4ED4-AB38-27A6C9685AF6}"

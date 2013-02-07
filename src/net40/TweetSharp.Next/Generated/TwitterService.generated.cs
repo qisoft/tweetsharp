@@ -756,6 +756,14 @@ namespace TweetSharp
 
  
         
+		IEnumerable<TwitterStatus> ListTweetsAndRetweetsOnSpecifiedUserTimeline(string screenName, bool includeRts);	
+
+ 
+        
+		IEnumerable<TwitterStatus> ListTweetsAndRetweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, bool includeRts);	
+
+ 
+        
 		IEnumerable<TwitterStatus> ListTweetsMentioningMe();	
 
  
@@ -1642,6 +1650,12 @@ namespace TweetSharp
 		IAsyncResult ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
 
         
+		IAsyncResult ListTweetsAndRetweetsOnSpecifiedUserTimeline(string screenName, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+        
+		IAsyncResult ListTweetsAndRetweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
+
+        
 		IAsyncResult ListTweetsMentioningMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action);		
 
         
@@ -2434,6 +2448,20 @@ namespace TweetSharp
 		IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimelineBefore(IAsyncResult result);		
 
 		IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimelineBefore(IAsyncResult result, TimeSpan timeout);
+
+        
+		IAsyncResult BeginListTweetsAndRetweetsOnSpecifiedUserTimeline();
+
+		IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimeline(IAsyncResult result);		
+
+		IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimeline(IAsyncResult result, TimeSpan timeout);
+
+        
+		IAsyncResult BeginListTweetsAndRetweetsOnSpecifiedUserTimelineSince();
+
+		IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimelineSince(IAsyncResult result);		
+
+		IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimelineSince(IAsyncResult result, TimeSpan timeout);
 
         
 		IAsyncResult BeginListTweetsMentioningMe();
@@ -3249,6 +3277,12 @@ namespace TweetSharp
 
         
 		void ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+        
+		void ListTweetsAndRetweetsOnSpecifiedUserTimeline(string screenName, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
+
+        
+		void ListTweetsAndRetweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
 
         
 		void ListTweetsMentioningMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action);
@@ -4620,6 +4654,18 @@ namespace TweetSharp
 		public virtual IEnumerable<TwitterStatus> ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count)
 		{
 			return WithHammock<IEnumerable<TwitterStatus>>("statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&max_id=", maxId, "&page=", page, "&count=", count);
+		}
+
+        
+		public virtual IEnumerable<TwitterStatus> ListTweetsAndRetweetsOnSpecifiedUserTimeline(string screenName, bool includeRts)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&include_rts=", includeRts);
+		}
+
+        
+		public virtual IEnumerable<TwitterStatus> ListTweetsAndRetweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, bool includeRts)
+		{
+			return WithHammock<IEnumerable<TwitterStatus>>("statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&since_id=", sinceId, "&include_rts=", includeRts);
 		}
 
         
@@ -6230,6 +6276,18 @@ namespace TweetSharp
 		}
 
         
+		public virtual IAsyncResult ListTweetsAndRetweetsOnSpecifiedUserTimeline(string screenName, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&include_rts=", includeRts);
+		}
+
+        
+		public virtual IAsyncResult ListTweetsAndRetweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			return WithHammock(action, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&since_id=", sinceId, "&include_rts=", includeRts);
+		}
+
+        
 		public virtual IAsyncResult ListTweetsMentioningMe(Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
 		{
 			return WithHammock(action, "statuses/mentions", FormatAsString);
@@ -7837,6 +7895,18 @@ namespace TweetSharp
 		}
 
         
+		public virtual IAsyncResult BeginListTweetsAndRetweetsOnSpecifiedUserTimeline(string screenName, bool includeRts)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&include_rts=", includeRts);
+		}
+
+        
+		public virtual IAsyncResult BeginListTweetsAndRetweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, bool includeRts)
+		{
+			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&since_id=", sinceId, "&include_rts=", includeRts);
+		}
+
+        
 		public virtual IAsyncResult BeginListTweetsMentioningMe()
 		{
 			return BeginWithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "statuses/mentions", FormatAsString);
@@ -9254,6 +9324,30 @@ namespace TweetSharp
 
 		
 		public virtual IEnumerable<TwitterStatus> EndListTweetsOnSpecifiedUserTimelineBefore(IAsyncResult result, TimeSpan timeout) 
+		{
+			return EndWithHammock<IEnumerable<TwitterStatus>>(result, timeout);
+		}
+
+        
+		public virtual IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimeline(IAsyncResult result) 
+		{
+			return EndWithHammock<IEnumerable<TwitterStatus>>(result);
+		}
+
+		
+		public virtual IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimeline(IAsyncResult result, TimeSpan timeout) 
+		{
+			return EndWithHammock<IEnumerable<TwitterStatus>>(result, timeout);
+		}
+
+        
+		public virtual IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimelineSince(IAsyncResult result) 
+		{
+			return EndWithHammock<IEnumerable<TwitterStatus>>(result);
+		}
+
+		
+		public virtual IEnumerable<TwitterStatus> EndListTweetsAndRetweetsOnSpecifiedUserTimelineSince(IAsyncResult result, TimeSpan timeout) 
 		{
 			return EndWithHammock<IEnumerable<TwitterStatus>>(result, timeout);
 		}
@@ -10809,6 +10903,18 @@ namespace TweetSharp
 		public virtual void ListTweetsOnSpecifiedUserTimelineBefore(string screenName, long maxId, int page, int count, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
 		{
 			WithHammock(action, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&max_id=", maxId, "&page=", page, "&count=", count);
+		}
+
+        
+		public virtual void ListTweetsAndRetweetsOnSpecifiedUserTimeline(string screenName, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&include_rts=", includeRts);
+		}
+
+        
+		public virtual void ListTweetsAndRetweetsOnSpecifiedUserTimelineSince(string screenName, long sinceId, bool includeRts, Action<IEnumerable<TwitterStatus>, TwitterResponse> action)
+		{
+			WithHammock(action, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, "&since_id=", sinceId, "&include_rts=", includeRts);
 		}
 
         

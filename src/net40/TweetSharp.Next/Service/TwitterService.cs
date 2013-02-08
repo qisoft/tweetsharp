@@ -155,7 +155,7 @@ namespace TweetSharp
             {
                 Authority = Globals.RestAPIAuthority,
                 QueryHandling = QueryHandling.AppendToParameters,
-                VersionPath = "1",
+                VersionPath = "1.1",
                 Serializer = _json,
                 Deserializer = _json,
                 DecompressionMethods = DecompressionMethods.GZip,
@@ -184,7 +184,7 @@ namespace TweetSharp
             {
                 Authority = Globals.UserStreamingAPIAuthority,
                 Proxy = Proxy,
-                VersionPath = "2",
+                VersionPath = "1.1",
                 Serializer = _json,
                 Deserializer = _json,
                 DecompressionMethods = DecompressionMethods.GZip,
@@ -201,7 +201,7 @@ namespace TweetSharp
             {
                 Authority = Globals.SearchStreamingAPIAuthority,
                 Proxy = Proxy,
-                VersionPath = "1",
+                VersionPath = "1.1",
                 Serializer = _json,
                 Deserializer = _json,
                 DecompressionMethods = DecompressionMethods.GZip,
@@ -379,7 +379,7 @@ namespace TweetSharp
             else
             {
                 _client.Authority = Globals.RestAPIAuthority;
-                _client.VersionPath = "1";
+                _client.VersionPath = "1.1";
             }
 
             for (var i = 0; i < segments.Count; i++)

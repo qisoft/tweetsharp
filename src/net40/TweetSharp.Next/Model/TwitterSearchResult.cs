@@ -6,25 +6,11 @@ using Newtonsoft.Json;
 
 namespace TweetSharp
 {
-#if !SILVERLIGHT
-    /// <summary>
-    /// The results of a request to the Search API.
-    /// </summary>
     [Serializable]
-#endif
-#if !Smartphone && !NET20
     [DataContract]
-    [DebuggerDisplay("{ResultsPerPage} results on page {Page} from {Source}")]
-#endif
     [JsonObject(MemberSerialization.OptIn)]
-    public class TwitterSearchResult : ITwitterModel
+    public class TwitterSearchMetaData
     {
-        [JsonProperty("results")]
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public virtual IEnumerable<TwitterSearchStatus> Statuses { get; set; }
-
 #if !Smartphone && !NET20
         [DataMember]
 #endif
@@ -84,6 +70,33 @@ namespace TweetSharp
         [DataMember]
 #endif
         public virtual int Total { get; set; }
+    }
+
+
+#if !SILVERLIGHT
+    /// <summary>
+    /// The results of a request to the Search API.
+    /// </summary>
+    [Serializable]
+#endif
+#if !Smartphone && !NET20
+    [DataContract]
+    [DebuggerDisplay("{ResultsPerPage} results on page {Page} from {Source}")]
+#endif
+    [JsonObject(MemberSerialization.OptIn)]
+    public class TwitterSearchResult : ITwitterModel
+    {
+#if !Smartphone && !NET20
+        [DataMember]
+#endif
+        public virtual IEnumerable<TwitterSearchStatus> Statuses { get; set; }
+        
+#if !Smartphone && !NET20
+        [DataMember]
+#endif
+        public virtual TwitterSearchMetaData SearchMetadata { get; set; }
+        
+
 
 #if !Smartphone && !NET20
         /// <summary>
@@ -94,4 +107,6 @@ namespace TweetSharp
 #endif
         public virtual string RawSource { get; set; }
     }
+
+
 }

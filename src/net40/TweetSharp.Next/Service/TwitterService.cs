@@ -418,7 +418,7 @@ namespace TweetSharp
             if(IncludeEntities)// && !path.Contains("/lists"))
             {
                 segments.Add(segments.Count() > 1 ? "&include_entities=" : "?include_entities=");
-                segments.Add("1");
+                segments.Add("true");
             }
 
             segments.Insert(0, path);
@@ -617,7 +617,23 @@ namespace TweetSharp
                 str += "&count=" + opts.NumberOfTweets;
             }
 
-            return WithHammock<IEnumerable<TwitterStatus>>("statuses/user_timeline", FormatAsString, "?screen_name=", screenName, str);
+            return WithHammock<IEnumerable<TwitterStatus>>(WebMethod.Post, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, str);
+        }
+
+        public virtual TwitterSearchResult Search(string query, SearchOption opts)
+        {
+            string str = "";
+            if (opts.Geocode != null)
+            {
+                str += "&geocode=" + opts.Geocode;
+            }
+
+            if (opts.Language != null)
+            {
+                str += "&lang=" + opts.Language;
+            }
+
+            return WithHammock<TwitterSearchResult>("search/tweets", FormatAsString, "?q=", query, str);
         }
 
     }
@@ -631,6 +647,25 @@ namespace TweetSharp
         {
             IncludeRetweets = false;
             NumberOfTweets = 0;
+        }
+    }
+
+    public enum ResultType
+    {
+        Mixed,
+        Recent,
+        Popular
+    }
+
+    public class SearchOption
+    {
+        public string Language;
+        public string Geocode;
+        public ResultType ResultType;
+
+        public SearchOption()
+        {
+            ResultType = ResultType.Mixed;
         }
     }
 

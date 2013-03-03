@@ -6,6 +6,81 @@ using Newtonsoft.Json;
 
 namespace TweetSharp
 {
+
+
+#if !SILVERLIGHT
+    [Serializable]
+#endif
+#if !Smartphone && !NET20
+    [DataContract]
+#endif
+    [JsonObject(MemberSerialization.OptIn)]
+    public class TwitterSearchUser  
+    {
+        [DataMember]
+        public virtual string Name { get; set; }
+
+        [DataMember]
+        public virtual string IdStr { get; set; }
+        
+        
+        /*
+        "created_at": "Mon Apr 26 06:01:55 +0000 2010",
+        "location": "LA, CA",
+        "follow_request_sent": null,
+        "profile_link_color": "0084B4",
+        "is_translator": false,
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "expanded_url": null,
+                "url": "",
+                "indices": [
+                  0,
+                  0
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+            ]
+          }
+        },
+        "default_profile": true,
+        "contributors_enabled": false,
+        "favourites_count": 0,
+        "url": null,
+        "profile_image_url_https": "https://si0.twimg.com/profile_images/2359746665/1v6zfgqo8g0d3mk7ii5s_normal.jpeg",
+        "utc_offset": -28800,
+        "id": 137238150,
+        "profile_use_background_image": true,
+        "listed_count": 2,
+        "profile_text_color": "333333",
+        "lang": "en",
+        "followers_count": 70,
+        "protected": false,
+        "notifications": null,
+        "profile_background_image_url_https": "https://si0.twimg.com/images/themes/theme1/bg.png",
+        "profile_background_color": "C0DEED",
+        "verified": false,
+        "geo_enabled": true,
+        "time_zone": "Pacific Time (US & Canada)",
+        "description": "Born 330 Live 310",
+        "default_profile_image": false,
+        "profile_background_image_url": "http://a0.twimg.com/images/themes/theme1/bg.png",
+        "statuses_count": 579,
+        "friends_count": 110,
+        "following": null,
+        "show_all_inline_media": false,
+        "screen_name": "sean_cummings"
+      */
+
+
+    }
+
+
 #if !SILVERLIGHT
     [Serializable]
 #endif
@@ -16,9 +91,7 @@ namespace TweetSharp
     [JsonObject(MemberSerialization.OptIn)]
     public class TwitterSearchStatus : PropertyChangedBase,
                                        IComparable<TwitterSearchStatus>,
-                                       IEquatable<TwitterSearchStatus>,
-                                       ITwitterModel,
-                                       ITweetable
+                                       IEquatable<TwitterSearchStatus>
     {
         private DateTime _createdDate;
         private int _fromUserId;
@@ -35,6 +108,7 @@ namespace TweetSharp
         private string _location;
         private TwitterGeoLocation _geoLocation;
         private TwitterEntities _entities;
+
 
 #if !Smartphone && !NET20
         [DataMember]
@@ -92,21 +166,6 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual ITweeter Author
-        {
-            get
-            {
-                return new TwitterUser
-                           {
-                               ProfileImageUrl = ProfileImageUrl,
-                               ScreenName = FromUserScreenName
-                           };
-            }
-        }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
         public virtual string Source
         {
             get { return _source; }
@@ -144,106 +203,6 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        [Obsolete("This property is currently erroneous as it contains an internal ID")]
-        public virtual int? ToUserId
-        {
-            get { return _toUserId; }
-            set
-            {
-                if (_toUserId == value)
-                {
-                    return;
-                }
-
-                _toUserId = value;
-                OnPropertyChanged("ToUserId");
-            }
-        }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        [Obsolete("This property is currently erroneous as it contains an internal ID")]
-        public int? FromUserId
-        {
-            get { return _fromUserId; }
-            set
-            {
-                if (_fromUserId == value)
-                {
-                    return;
-                }
-
-                if (value == null)
-                {
-                    return;
-                }
-                
-                _fromUserId = (int) value;
-                OnPropertyChanged("FromUserId");
-            }
-        }
-
-        [JsonProperty("from_user")]
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-            public string FromUserScreenName
-        {
-            get { return _fromUserScreenName; }
-            set
-            {
-                if (_fromUserScreenName == value)
-                {
-                    return;
-                }
-
-                _fromUserScreenName = value;
-                OnPropertyChanged("FromUserScreenName");
-            }
-        }
-
-        [JsonProperty("from_user_name")]
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public string FromUserName
-        {
-            get { return _fromUserName; }
-            set
-            {
-                if (_fromUserName == value)
-                {
-                    return;
-                }
-
-                _fromUserName = value;
-                OnPropertyChanged("FromUserName");
-            }
-        }
-
-        [JsonProperty("to_user")]
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public string ToUserScreenName
-        {
-            get { return _toUserScreenName; }
-            set
-            {
-                if (_toUserScreenName == value)
-                {
-                    return;
-                }
-
-                _toUserScreenName = value;
-                OnPropertyChanged("ToUserScreenName");
-            }
-        }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
             public string IsoLanguageCode
         {
             get { return _isoLanguageCode; }
@@ -256,60 +215,6 @@ namespace TweetSharp
 
                 _isoLanguageCode = value;
                 OnPropertyChanged("IsoLanguageCode");
-            }
-        }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-            public string ProfileImageUrl
-        {
-            get { return _profileImageUrl; }
-            set
-            {
-                if (_profileImageUrl == value)
-                {
-                    return;
-                }
-
-                _profileImageUrl = value;
-                OnPropertyChanged("ProfileImageUrl");
-            }
-        }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-            public long SinceId
-        {
-            get { return _sinceId; }
-            set
-            {
-                if (_sinceId == value)
-                {
-                    return;
-                }
-
-                _sinceId = value;
-                OnPropertyChanged("SinceId");
-            }
-        }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-            public string Location
-        {
-            get { return _location; }
-            set
-            {
-                if (_location == value)
-                {
-                    return;
-                }
-
-                _location = value;
-                OnPropertyChanged("Location");
             }
         }
 
@@ -349,6 +254,9 @@ namespace TweetSharp
                 OnPropertyChanged("Entities");
             }
         }
+
+        [JsonProperty("user")]
+        public virtual TwitterSearchUser User  { get; set; }
 
         #region IComparable<TwitterSearchStatus> Members
 
@@ -454,8 +362,6 @@ namespace TweetSharp
         {
             var user = new TwitterUser
                            {
-                               ProfileImageUrl = searchStatus.ProfileImageUrl,
-                               ScreenName = searchStatus.FromUserScreenName
                            };
 
             var status = new TwitterStatus
@@ -480,4 +386,5 @@ namespace TweetSharp
 #endif
         public virtual string RawSource { get; set; }
     }
+
 }

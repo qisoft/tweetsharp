@@ -633,6 +633,20 @@ namespace TweetSharp
                 str += "&lang=" + opts.Language;
             }
 
+            if (opts.SinceId != -1)
+            {
+                str += "&since_id=" + opts.SinceId.ToString();
+            }
+
+            if (opts.ResultType == ResultType.Popular)
+            {
+                str += "&result_type=popular";
+
+            }else if (opts.ResultType == ResultType.Recent)
+            {
+                str += "&result_type=recent";
+            }
+
             return WithHammock<TwitterSearchResult>("search/tweets", FormatAsString, "?q=", query, str);
         }
 
@@ -662,10 +676,12 @@ namespace TweetSharp
         public string Language;
         public string Geocode;
         public ResultType ResultType;
+        public long SinceId; 
 
         public SearchOption()
         {
             ResultType = ResultType.Mixed;
+            SinceId = -1;
         }
     }
 

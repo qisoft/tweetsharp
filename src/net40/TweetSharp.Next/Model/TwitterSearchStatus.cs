@@ -162,25 +162,7 @@ namespace TweetSharp
                 _textAsHtml = value;
             }
         }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public virtual string Source
-        {
-            get { return _source; }
-            set
-            {
-                if (_source == value)
-                {
-                    return;
-                }
-
-                _source = value;
-                OnPropertyChanged("Source");
-            }
-        }
-
+        
         [JsonProperty("created_at")]
 #if !Smartphone && !NET20
         [DataMember]
@@ -368,7 +350,6 @@ namespace TweetSharp
                              {
                                  CreatedDate = searchStatus.CreatedDate,
                                  Id = searchStatus.Id,
-                                 Source = searchStatus.Source,
                                  RawSource = searchStatus.RawSource,
                                  Text = searchStatus.Text,
                                  User = user

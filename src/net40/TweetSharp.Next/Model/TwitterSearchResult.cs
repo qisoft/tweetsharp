@@ -25,12 +25,7 @@ namespace TweetSharp
         [DataMember]
 #endif
         public virtual string RefreshUrl { get; set; }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public virtual int ResultsPerPage { get; set; }
-
+        
 #if !Smartphone && !NET20
         [DataMember]
 #endif
@@ -49,23 +44,13 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual int Page { get; set; }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
         public virtual string Query { get; set; }
 
 #if !Smartphone && !NET20
         [DataMember]
 #endif
         public virtual string Warning { get; set; }
-
-#if !Smartphone && !NET20
-        [DataMember]
-#endif
-        public virtual string Source { get; set; }
-
+        
 #if !Smartphone && !NET20
         [DataMember]
 #endif

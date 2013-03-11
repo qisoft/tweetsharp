@@ -2,13 +2,7 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\Wakusei\Documents\GitHub\tweetsharp\src\net40\TweetSharp.Next\Service\TwitterService.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\Wakusei\Documents\GitHub\tweetsharp\src\net40\TweetSharp.Next\Model\TwitterSearchResult.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\Wakusei\Documents\GitHub\tweetsharp\src\net40\TweetSharp.Next\Model\TwitterSearchStatus.cs</string>
+      <string>C:\Users\dev\Documents\GitHub\tweetsharp\src\net40\TweetSharp.Next\Service\TwitterService.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

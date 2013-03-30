@@ -633,6 +633,11 @@ namespace TweetSharp
                 str += "&lang=" + opts.Language;
             }
 
+            if (opts.Locale != null)
+            {
+                str += "&locale=" + opts.Locale;
+            }
+
             if (opts.SinceId != -1)
             {
                 str += "&since_id=" + opts.SinceId.ToString();
@@ -674,6 +679,7 @@ namespace TweetSharp
     public class SearchOption
     {
         public string Language;
+        public string Locale;
         public string Geocode;
         public ResultType ResultType;
         public long SinceId; 

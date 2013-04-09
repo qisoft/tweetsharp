@@ -22,7 +22,10 @@ namespace TweetSharp
 
         [DataMember]
         public virtual string IdStr { get; set; }
-        
+
+        [JsonProperty("screen_name")]
+        [DataMember]
+        public virtual string ScreenName { get; set; }
         
         /*
         "created_at": "Mon Apr 26 06:01:55 +0000 2010",

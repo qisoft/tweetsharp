@@ -643,6 +643,11 @@ namespace TweetSharp
                 str += "&since_id=" + opts.SinceId.ToString();
             }
 
+            if (opts.Count != -1 )
+            {
+                str += "&count=" + opts.Count.ToString();
+            }
+
             if (opts.ResultType == ResultType.Popular)
             {
                 str += "&result_type=popular";
@@ -682,12 +687,14 @@ namespace TweetSharp
         public string Locale;
         public string Geocode;
         public ResultType ResultType;
-        public long SinceId; 
+        public long SinceId;
+        public int Count;
 
         public SearchOption()
         {
             ResultType = ResultType.Mixed;
             SinceId = -1;
+            Count = -1;
         }
     }
 

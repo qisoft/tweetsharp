@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Compat.Web;
 using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using Newtonsoft.Json;
 using NUnit.Framework;
+using TweetSharp.Serialization;
 
 namespace TweetSharp.Tests.Service
 {
@@ -26,6 +31,53 @@ namespace TweetSharp.Tests.Service
             _consumerSecret = ConfigurationManager.AppSettings["ConsumerSecret"];
             _accessToken = ConfigurationManager.AppSettings["AccessToken"];
             _accessTokenSecret = ConfigurationManager.AppSettings["AccessTokenSecret"];
+        }
+
+        [Test]
+        public void ParseTweetResult()
+        {
+            var settings = new JsonSerializerSettings
+            {
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Include,
+                ContractResolver = new JsonConventionResolver(),
+                Converters = new List<JsonConverter>
+                {
+                    new TwitterDateTimeConverter(),
+                    new TwitterWonkyBooleanConverter(),
+                    new TwitterGeoConverter()
+                }
+            };
+
+            var sr = new StreamReader(@"..\..\response.txt");
+            var str=sr.ReadToEnd();
+
+            var serializer = new Newtonsoft.Json.JsonSerializer
+            {
+                ConstructorHandling = settings.ConstructorHandling,
+                ContractResolver = settings.ContractResolver,
+                ObjectCreationHandling = settings.ObjectCreationHandling,
+                MissingMemberHandling = settings.MissingMemberHandling,
+                DefaultValueHandling = settings.DefaultValueHandling,
+                NullValueHandling = settings.NullValueHandling
+            };
+
+//            Type type = typeof (IEnumerable<TwitterStatus>);
+            Type type = typeof(TwitterStatus);
+
+            TwitterStatus result;
+            using (var stringReader = new StringReader(str))
+            {
+                using (var jsonTextReader = new JsonTextReader(stringReader))
+                {
+                    result = (TwitterStatus)serializer.Deserialize(jsonTextReader, type);
+                }
+            }
+
+            var a= result.CreatedDate;
+
+
         }
 
         [Test]
@@ -310,17 +362,17 @@ namespace TweetSharp.Tests.Service
         [Ignore("Makes a live status update")]
         public void Can_tweet_with_location_custom_type()
         {
-            var service = GetAuthenticatedService();
-
-            var tweet = service.SendTweet(DateTime.UtcNow.Ticks.ToString(), 45.43989910068863, -75.69168090820312);
-
-            var uri = service.Response.RequestUri;
-            var queryString = HttpUtility.ParseQueryString(uri.Query);
-            var location = queryString["location"];
-            Assert.AreNotEqual("TweetSharp.TwitterGeoLocation", location);
-
-            Assert.IsNotNull(tweet);
-            Assert.AreNotEqual(0, tweet.Id);
+//            var service = GetAuthenticatedService();
+//
+//            var tweet = service.SendTweet(DateTime.UtcNow.Ticks.ToString(), 45.43989910068863, -75.69168090820312);
+//
+//            var uri = service.Response.RequestUri;
+//            var queryString = HttpUtility.ParseQueryString(uri.Query);
+//            var location = queryString["location"];
+//            Assert.AreNotEqual("TweetSharp.TwitterGeoLocation", location);
+//
+//            Assert.IsNotNull(tweet);
+//            Assert.AreNotEqual(0, tweet.Id);
         }
 
         [Test]
@@ -494,7 +546,7 @@ namespace TweetSharp.Tests.Service
 
             foreach(var tweet in results.Statuses)
             {
-                Console.WriteLine("{0} says '{1}", tweet.FromUserScreenName, tweet.Text);
+//                Console.WriteLine("{0} says '{1}", tweet.FromUserScreenName, tweet.Text);
             }
         }
 
@@ -515,7 +567,7 @@ namespace TweetSharp.Tests.Service
             foreach (var tweet in results.Statuses)
             {
                 Assert.IsNotNullOrEmpty(tweet.RawSource);
-                Console.WriteLine("{0} says '{1}", tweet.FromUserScreenName, tweet.Text);
+//                Console.WriteLine("{0} says '{1}", tweet.FromUserScreenName, tweet.Text);
             }
         }
 

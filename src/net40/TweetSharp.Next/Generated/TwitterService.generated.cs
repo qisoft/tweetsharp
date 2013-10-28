@@ -3823,7 +3823,7 @@ namespace TweetSharp
 		}
 
         
-		public virtual TwitterDirectMessage SendDirectMessage(int userId, string text)
+		public virtual TwitterDirectMessage SendDirectMessage(long userId, string text)
 		{
 			return WithHammock<TwitterDirectMessage>(WebMethod.Post, "direct_messages/new", FormatAsString, "?user_id=", userId, "&text=", text);
 		}
@@ -4057,7 +4057,7 @@ namespace TweetSharp
 		}
 
         [Obsolete("Twitter has declared this method obsolete; it may cease to function at any time. Check https://dev.twitter.com/docs/api#deprecated for alternatives.")]
-		public virtual TwitterCursorList<TwitterUser> ListFollowersOf(int userId, long cursor)
+		public virtual TwitterCursorList<TwitterUser> ListFollowersOf(long userId, long cursor)
 		{
 			return WithHammock<TwitterCursorList<TwitterUser>>("statuses/followers", FormatAsString, "?user_id=", userId, "&cursor=", cursor);
 		}

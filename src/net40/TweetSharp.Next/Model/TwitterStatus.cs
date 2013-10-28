@@ -1,6 +1,8 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using Hammock.Model;
 using Newtonsoft.Json;
 
@@ -20,7 +22,8 @@ namespace TweetSharp
                                  ITwitterModel, 
                                  ITweetable
     {
-        private DateTime _createdDate;
+        private string _createdDateStr;
+        private DateTime m_CreatedDate;
         private long _id;
         private string _inReplyToScreenName;
         private long? _inReplyToStatusId;
@@ -272,20 +275,37 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual DateTime CreatedDate
+        public virtual string CreatedDateStr
         {
-            get { return _createdDate; }
+            get { return _createdDateStr; }
             set
             {
-                if (_createdDate == value)
+                if (_createdDateStr == value)
                 {
                     return;
                 }
 
-                _createdDate = value;
+                _createdDateStr = value;
                 OnPropertyChanged("CreatedDate");
             }
         }
+
+        public DateTime CreatedDate
+        {
+            get
+            {
+                var m = Regex.Match(_createdDateStr, @"\w+ (\w+) (\d+) (\d+):(\d+):(\d+) \+(\d+) (\d+)");
+                string dateStr = m.Groups[7].Value + " " + m.Groups[1].Value + " " + m.Groups[2].Value + " " + m.Groups[3].Value + ":" + m.Groups[4].Value + ":" + m.Groups[5].Value + " +" + m.Groups[6].Value;
+                var dt = DateTime.Parse(dateStr, DateTimeFormatInfo.InvariantInfo);
+
+                return dt;
+            }
+            set
+            {
+                m_CreatedDate = value;
+            }
+        }
+
 
         [JsonProperty("geo")]
 #if !Smartphone && !NET20

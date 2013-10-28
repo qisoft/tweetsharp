@@ -617,7 +617,7 @@ namespace TweetSharp
                 str += "&count=" + opts.NumberOfTweets;
             }
 
-            return WithHammock<IEnumerable<TwitterStatus>>(WebMethod.Post, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, str);
+            return WithHammock<IEnumerable<TwitterStatus>>(WebMethod.Get, "statuses/user_timeline", FormatAsString, "?screen_name=", screenName, str);
         }
 
         public virtual TwitterSearchResult Search(string query, SearchOption opts)

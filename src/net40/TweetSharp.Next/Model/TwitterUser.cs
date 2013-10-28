@@ -22,7 +22,7 @@ namespace TweetSharp
     {
         private string _description;
         private int _followersCount;
-        private int _id;
+        private long _id;
         private bool? _isProtected;
         private string _location;
         private string _name;
@@ -30,7 +30,7 @@ namespace TweetSharp
         private string _screenName;
         private TwitterStatus _status;
         private string _url;
-        private DateTime _createdDate;
+        private string _createdDate;
         private bool? _isVerified;
         private bool? _isGeoEnabled;
         private bool _isProfileBackgroundTiled;
@@ -62,7 +62,7 @@ namespace TweetSharp
         /// <value>The ID.</value>
         [DataMember]
 #endif
-        public virtual int Id
+        public virtual long Id
         {
             get { return _id; }
             set
@@ -539,7 +539,7 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual DateTime CreatedDate
+        public virtual string CreatedDateStr
         {
             get { return _createdDate; }
             set

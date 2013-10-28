@@ -21,5 +21,5 @@ IEnumerable<TwitterDirectMessage>, "direct_messages/sent", ListDirectMessagesSen
 TwitterDirectMessage, "direct_messages/destroy/{id}":DELETE, DeleteDirectMessage, long id
 TwitterDirectMessage, "direct_messages/destroy/{id}":DELETE, DeleteDirectMessage, int id
 
-TwitterDirectMessage, "direct_messages/new":POST, SendDirectMessage, int userId, string text
+TwitterDirectMessage, "direct_messages/new":POST, SendDirectMessage, long userId, string text
 TwitterDirectMessage, "direct_messages/new":POST, SendDirectMessage, string screenName, string text

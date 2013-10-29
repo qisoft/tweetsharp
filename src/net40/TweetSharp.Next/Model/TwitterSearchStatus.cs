@@ -1,6 +1,8 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using Hammock.Model;
 using Newtonsoft.Json;
 
@@ -101,7 +103,6 @@ namespace TweetSharp
                                        IComparable<TwitterSearchStatus>,
                                        IEquatable<TwitterSearchStatus>
     {
-        private DateTime _createdDate;
         private int _fromUserId;
         private string _fromUserName;
         private string _fromUserScreenName;
@@ -175,18 +176,16 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
+        public string CreatedDateStr { get; set; }
+
         public virtual DateTime CreatedDate
         {
-            get { return _createdDate; }
-            set
+            get
             {
-                if (_createdDate == value)
-                {
-                    return;
-                }
-
-                _createdDate = value;
-                OnPropertyChanged("CreatedDate");
+                var m = Regex.Match(CreatedDateStr, @"\w+ (\w+) (\d+) (\d+):(\d+):(\d+) \+(\d+) (\d+)");
+                string dateStr = m.Groups[7].Value + " " + m.Groups[1].Value + " " + m.Groups[2].Value + " " + m.Groups[3].Value + ":" + m.Groups[4].Value + ":" + m.Groups[5].Value + " +" + m.Groups[6].Value;
+                var dt = DateTime.Parse(dateStr, DateTimeFormatInfo.InvariantInfo);
+                return dt;
             }
         }
 

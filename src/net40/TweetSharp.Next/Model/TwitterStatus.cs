@@ -27,7 +27,7 @@ namespace TweetSharp
         private long _id;
         private string _inReplyToScreenName;
         private long? _inReplyToStatusId;
-        private int? _inReplyToUserId;
+        private long? _inReplyToUserId;
         private bool _isFavorited;
         private bool _isTruncated;
         private string _source;
@@ -60,7 +60,7 @@ namespace TweetSharp
 #if !Smartphone && !NET20
         [DataMember]
 #endif
-        public virtual int? InReplyToUserId
+        public virtual long? InReplyToUserId
         {
             get { return _inReplyToUserId; }
             set

@@ -56,12 +56,26 @@ namespace TweetSharp
             var coords = new double[2];
             if (reader.TokenType == JsonToken.Float || reader.TokenType == JsonToken.Integer)
             {
-                coords[0] = (double)reader.Value;
+                if (reader.TokenType == JsonToken.Integer)
+                {
+                    coords[0] = (long)reader.Value;
+                }
+                else
+                {
+                    coords[0] = (double)reader.Value;
+                }
                 reader.Read();
             }
             if (reader.TokenType == JsonToken.Float || reader.TokenType == JsonToken.Integer)
             {
-                coords[1] = (double)reader.Value;
+                if (reader.TokenType == JsonToken.Integer)
+                {
+                    coords[1] = (long)reader.Value;
+                }
+                else
+                {
+                    coords[1] = (double)reader.Value;
+                }
                 reader.Read();
             }
 

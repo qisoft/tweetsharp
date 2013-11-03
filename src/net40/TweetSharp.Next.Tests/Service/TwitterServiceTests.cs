@@ -63,19 +63,18 @@ namespace TweetSharp.Tests.Service
                 NullValueHandling = settings.NullValueHandling
             };
 
-//            Type type = typeof (IEnumerable<TwitterStatus>);
-            Type type = typeof(TwitterStatus);
-
-            TwitterStatus result;
+            Type type = typeof (IEnumerable<TwitterStatus>);
+//            Type type = typeof(TwitterStatus);
+            
             using (var stringReader = new StringReader(str))
             {
                 using (var jsonTextReader = new JsonTextReader(stringReader))
                 {
-                    result = (TwitterStatus)serializer.Deserialize(jsonTextReader, type);
+                    var result = (IEnumerable<TwitterStatus>)serializer.Deserialize(jsonTextReader, type);
                 }
             }
 
-            var a= result.CreatedDate;
+
 
 
         }

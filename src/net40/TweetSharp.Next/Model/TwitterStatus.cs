@@ -307,24 +307,24 @@ namespace TweetSharp
         }
 
 
-        [JsonProperty("geo")]
+//        [JsonProperty("geo")]
 #if !Smartphone && !NET20
-        [DataMember]
+//        [DataMember]
 #endif
-        public virtual TwitterGeoLocation Location
-        {
-            get { return _location; }
-            set
-            {
-                if (_location == value)
-                {
-                    return;
-                }
-
-                _location = value;
-                OnPropertyChanged("Location");
-            }
-        }
+//        public virtual TwitterGeoLocation Location
+//        {
+//            get { return _location; }
+//            set
+//            {
+//                if (_location == value)
+//                {
+//                    return;
+//                }
+//
+//                _location = value;
+//                OnPropertyChanged("Location");
+//            }
+//        }
 
 #if !Smartphone && !NET20
         [DataMember]

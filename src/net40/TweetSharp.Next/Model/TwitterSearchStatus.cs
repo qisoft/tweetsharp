@@ -247,6 +247,11 @@ namespace TweetSharp
         [JsonProperty("user")]
         public virtual TwitterSearchUser User  { get; set; }
 
+        [JsonProperty("retweet_count")]
+        public int RetweetCount { get; set; }
+
+
+
         #region IComparable<TwitterSearchStatus> Members
 
         /// <summary>
